@@ -1,109 +1,179 @@
 <!DOCTYPE html>
 <html>
-    <title>जय सिया राम जी</title>
- <head>
-            <meta charset="UTF-8">
-            <meta name="description" content="Free Web tutorials">
-            <meta name="keywords" content="HTML, CSS, JavaScript">
-            <meta name="author" content="John Doe">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          </head>
-          
-    
+<title>जय सिया राम जी</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <body>
-    
-    <h1 style="text-align: left; padding-left: 50px;">जय सिया राम जी</h1>
-   <h3> वस्तु का  चित्र</h3>
-        <select id="selectNumber" onchange = "imagechange()"font-size="30"  style="font-style:initial; height: 40px; width: 350px; padding: 1px; text-align: left;align-items: center; font-size: 200; ">
+    <style>
+        body {
+            text-align: center;
+            color: #fb6574;
+            font-size: 28px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"] {
+            font-size: 18px;
+            padding: 10px 30px;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid #fb6574;
+        }
+
+        input[type="button"],
+        a {
+            background: #fb6574;
+            font-size: 28px;
+            padding: 10px 50px;
+            border: none;
+            color: #fff;
+            font-weight: 200;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 5px;
+            margin: 10px;
+            box-shadow: 1px 2px 3px 0px #e6e6e6;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 1100px;
+            height: 1100px;
+            margin: 10px auto;
+        }
+
+            .wrapper canvas {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .right {
+            float: right;
+        }
+
+        .left {
+            float: left;
+        }
+
+        #dimensions {
+            margin: 20px;
+        }
+
+        #app {
+            display: none;
+        }
+    </style>
+    <div id="pass" style="display: block;">
+        <input type="password" id="password" placeholder="Enter Password">
+        <input type="button" value="Submit" id="submitPass" onclick="submitPassword();">
+    </div>
+    <div id="app" style="display: none;">
+        <h1 style="text-align: left; padding-left: 50px;">जय सिया राम जी</h1>
+        <h3> वस्तु का  चित्र</h3>
+        <select id="selectNumber" onchange="imagechange()" font-size="30" style="font-style:initial; height: 40px; width: 350px; padding: 1px; text-align: left;align-items: center; font-size: 200; ">
             <option>वस्तु चुनयिये</option>
         </select>
-           
-<br>
-<br>
-<br>    
+        <br>
+        <br>
+        <br>
+        <img id="carImage" width="350" height="350">
+    </div>
+    <script type="text/javascript">
+        function el(id) {
+            return document.getElementById(id);
+        } // Get elem by ID
 
-<img  id ="carImage"  width="350" height="350">
 
-<div id="google_translate_element"></div>
-<script  type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        const isAuthorised = localStorage.getItem("authorisedNew2");
+        if (isAuthorised) {
+            document.getElementById("app").style.display = "block";
+            document.getElementById("pass").style.display = "none";
+        }
+       
+        function submitPassword() {
+            if (document.getElementById("password").value.toLowerCase() === "shivramdass") {
+                localStorage.setItem("authorisedNew2", true);
+                document.getElementById("app").style.display = "block";
+                document.getElementById("pass").style.display = "none";
+            }
+        }
 
+        var select = document.getElementById("selectNumber");
+        var options = [
+            ["1", "4-Disha 4-दिशा"],
+            ["2", "Disha-Devta दिशा-देवता"],
+            ["3", "Disha-Ved दिशा-वेद"],
+            ["4", "Disha Gunn दिशा-गुण"],
+            ["5", "8-Disha 8-दिशा"],
+            ["6", "Disha Prabahv दिशा-प्रभाव"],
+            ["7", "Disha Grha दिशा-ग्रह"],
+            ["8", "Planet Ratan ग्रह-रत्न"],
+            ["9", "Disha Dikpal दिशा-दिक्पाल"],
+            ["10", "Dikpal Aayudh दिक्पाल-आयुध"],
+            ["11", "Dikpal Vahana दिक्पाल-वाहन"],
+            ["12", "Devta देवता"],
+            ["13", "Devta-Nighantu देवता-निघन्टु"],
+            ["14", "Nighantu Arth निघन्टु-अर्थ"],
+            ["15", "Disha Gandh दिशा-गन्ध"],
+            ["16", "Direction Dhatu दिशा-धातु"],
+            ["17", "Direction khanij दिशा-खनिज"],
+            ["18", "Khanij Dhatu खनिज धातु"],
+            ["19", "Devta Bhoajan देवता भोजन"],
+            ["20", "Devta  symbol देवता चिह्न"],
+            ["21", "Garabh Vaaniyas गर्भ वनि्यास "],
+            ["22", "Drawing room Drawing Room"],
+            ["23", "Vastu Power"],
+            ["25", "32 Padh vampire vithi 32 पद+पैशाच वीथी"],
+            ["27", "Marm मर्म"],
+            ["29", "Dwar Parinam द्वार+परिणाम"],
+            ["30", "Bed Room Bed Room"],
+            ["31", "House/Bed House/Bed"],
+            ["32", "temple मंदिर"],
+            ["33", "Dinning Dinning"],
+            ["34", "kitchen रसोई"],
+            ["35", "study room Study Room"],
+            ["36", "stairs Stair"],
+            ["37", " Tijori-तिजोरी"],
+            ["38", "Dust Been Dust Been"],
+            ["40", "Girl bed room Girl Bed Room"],
+            ["41", "Servants Servants"],
+            ["42", "ishan इशान"],
+            ["44", "Khat-Muhurta-Chakra खात-मुहूर्त-चक्र"],
+            ["47", "32 padh vampire lane 32 पद पैशाच वीथी"],
+            ["48", "Nighantu chakra निघंटु चक्र"],
+            ["51", "Devta Bhojan Aadi देवता भोजन आदि"],
+            ["53", "Ratnadeep Sthapanna as per Mayamatam"],
+            ["54", "Ratnadeep Sthapanna as per Aarajitprechha"],
+            /*["55", "55"]*/
+        ];
 
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement('google_translate_element');
-}
+        for (var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var el = document.createElement("option");
+            el.textContent = opt[1];
+            el.value = opt[0];
+            select.appendChild(el);
 
-    var select = document.getElementById("selectNumber");
-var options = [
-["1","4-Disha 4-दिशा"],
-["2","Disha-Devta दिशा-देवता"],
-["3","Disha-Ved दिशा-वेद"],
-["4","Disha Gunn दिशा-गुण"],
-["5","5"],
-["6","Disha Prabahv दिशा-प्रभाव"],
-["7","Disha Grha दिशा-ग्रह"],
-["8","Planet Ratan ग्रह-रत्न"],
-["9","Disha Dikpal दिशा-दिक्पाल"],
-["10","Dikpal Aayudh दिक्पाल-आयुध"],
-["11","Dikpal Vahana दिक्पाल-वाहन"],
-["12","Devta देवता"],
-["13","Devta-Nighantu देवता-निघन्टु"],
-["14","Nighantu Arth निघन्टु-अर्थ"],
-["15","Disha Gandh दिशा-गन्ध"],
-["16","Direction Dhatu दिशा-धातु"],
-["17","Direction khanij दिशा-खनिज"],
-["18","Khanij Dhatu खनिज धातु"],
-["19","Devta Bhoajan देवता भोजन"],
-["20","Devta  symbol देवता चिह्न"],
-["21","Garabh Vaaniyas गर्भ वनि्यास "],
-["22","Drawing room Drawing Room"],
-["23","23"],
-["25","32 Padh vampire vithi 32 पद+पैशाच वीथी"],
-["27","Marm मर्म"],
-["29","Dwar Parinam द्वार+परिणाम"],
-["30","Bed Room Bed Room"],
-["31","House/Bed House/Bed"],
-["32","temple मंदिर"],
-["33","Dinning Dinning"],
-["34","kitchen रसोई"],
-["35","study room Study Room"],
-["36","stairs Stair"],
-["37"," Tijori-तिजोरी"],
-["38","Dust Been Dust Been"],
-["40","Girl bed room Girl Bed Room"],
-["41","Servants Servants"],
-["42","ishan इशान"],
-["44","Khat-Muhurta-Chakra खात-मुहूर्त-चक्र"],
-["47","32 padh vampire lane 32 पद पैशाच वीथी"],
-["48","Nighantu chakra निघंटु चक्र"],
-["51","Devta Bhojan Aadi देवता भोजन आदि"],
-["53", "53"],
-["54", "54"],
-["55", "55"]
-];
-    
-for(var i = 0; i < options.length; i++) {
-    var opt = options[i];
-    var el = document.createElement("option");
-    el.textContent = opt[1];
-    el.value = opt[0];
-    select.appendChild(el);
+        }
 
-}
+        function imagechange() {
 
-function imagechange(){
+            if (document.getElementById("selectNumber") != 0) {
+                var url = "images/" + document.getElementById("selectNumber").value + ".jpg"
+                document.getElementById("carImage").src = url;
+            }
+            else
+                document.getElementById("carImage").src = "";
 
-    if(document.getElementById("selectNumber")!=0)
-    {
-        var url= "images/"+document.getElementById("selectNumber").value+".jpg"
-    document.getElementById("carImage").src= url;
-    }
-    else
-    document.getElementById("carImage").src= "";
- 
-}
-</script>
-
+        }
+    </script>
 
 </body>
 
