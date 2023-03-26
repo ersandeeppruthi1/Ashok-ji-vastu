@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <title>जय सिया राम जी</title>
+ <head>
+            <meta charset="UTF-8">
+            <meta name="description" content="Free Web tutorials">
+            <meta name="keywords" content="HTML, CSS, JavaScript">
+            <meta name="author" content="John Doe">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          </head>
+          
+    
+<body>
+    
+    <h1 style="text-align: left; padding-left: 50px;">जय सिया राम जी</h1>
+   <h3> वस्तु का  चित्र</h3>
+        <select id="selectNumber" onchange = "imagechange()"font-size="30"  style="font-style:initial; height: 40px; width: 350px; padding: 1px; text-align: left;align-items: center; font-size: 200; ">
+            <option>वस्तु चुनयिये</option>
+        </select>
+           
+<br>
+<br>
+<br>    
+
+<img  id ="carImage"  width="350" height="350">
+
+<div id="google_translate_element"></div>
+<script  type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement('google_translate_element');
+}
+
+    var select = document.getElementById("selectNumber");
+var options = [
+["1","4-Disha 4-दिशा"],
+["2","Disha-Devta दिशा-देवता"],
+["3","Disha-Ved दिशा-वेद"],
+["4","Disha Gunn दिशा-गुण"],
+["5","5"],
+["6","Disha Prabahv दिशा-प्रभाव"],
+["7","Disha Grha दिशा-ग्रह"],
+["8","Planet Ratan ग्रह-रत्न"],
+["9","Disha Dikpal दिशा-दिक्पाल"],
+["10","Dikpal Aayudh दिक्पाल-आयुध"],
+["11","Dikpal Vahana दिक्पाल-वाहन"],
+["12","Devta देवता"],
+["13","Devta-Nighantu देवता-निघन्टु"],
+["14","Nighantu Arth निघन्टु-अर्थ"],
+["15","Disha Gandh दिशा-गन्ध"],
+["16","Direction Dhatu दिशा-धातु"],
+["17","Direction khanij दिशा-खनिज"],
+["18","Khanij Dhatu खनिज धातु"],
+["19","Devta Bhoajan देवता भोजन"],
+["20","Devta  symbol देवता चिह्न"],
+["21","Garabh Vaaniyas गर्भ वनि्यास "],
+["22","Drawing room Drawing Room"],
+["23","23"],
+["25","32 Padh vampire vithi 32 पद+पैशाच वीथी"],
+["27","Marm मर्म"],
+["29","Dwar Parinam द्वार+परिणाम"],
+["30","Bed Room Bed Room"],
+["31","House/Bed House/Bed"],
+["32","temple मंदिर"],
+["33","Dinning Dinning"],
+["34","kitchen रसोई"],
+["35","study room Study Room"],
+["36","stairs Stair"],
+["37"," Tijori-तिजोरी"],
+["38","Dust Been Dust Been"],
+["40","Girl bed room Girl Bed Room"],
+["41","Servants Servants"],
+["42","ishan इशान"],
+["44","Khat-Muhurta-Chakra खात-मुहूर्त-चक्र"],
+["47","32 padh vampire lane 32 पद पैशाच वीथी"],
+["48","Nighantu chakra निघंटु चक्र"],
+["51","Devta Bhojan Aadi देवता भोजन आदि"],
+["53", "53"],
+["54", "54"],
+["55", "55"]
+];
+    
+for(var i = 0; i < options.length; i++) {
+    var opt = options[i];
+    var el = document.createElement("option");
+    el.textContent = opt[1];
+    el.value = opt[0];
+    select.appendChild(el);
+
+}
+
+function imagechange(){
+
+    if(document.getElementById("selectNumber")!=0)
+    {
+        var url= "images/"+document.getElementById("selectNumber").value+".jpg"
+    document.getElementById("carImage").src= url;
+    }
+    else
+    document.getElementById("carImage").src= "";
+ 
+}
+</script>
+
+
+</body>
+
+</html>

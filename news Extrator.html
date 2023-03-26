@@ -1,0 +1,185 @@
+using Newtonsoft.Json;
+using System;
+
+using System.Collections.Generic;
+
+using System.IO;
+
+using System.Linq;
+
+using System.Net;
+
+using System.Text;
+
+using System.Threading.Tasks;
+
+
+
+namespace NewsExtractor
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+
+
+            NewsEntities newsEntities = new NewsEntities();
+
+            var list = newsEntities.NewsURLs;
+
+            foreach (var url in list)
+
+            {
+
+                var data = GetURLData(ur l.URL.Replace("200", url.Count.ToString()));
+
+                AddNews(data);
+
+            }
+
+        }
+
+
+
+        private static string GetURLData(string url)
+
+        {
+
+            Console.WriteLine(url);
+
+            WebClient client = new WebClient();
+
+
+
+            client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36)");
+
+
+
+            Stream data = client.OpenRead(url);
+
+            StreamReader reader = new StreamReader(data);
+
+            var s = reader.ReadToEnd();
+
+            data.Close();
+
+            reader.Close();
+
+            return s;
+
+        }
+
+
+
+        private static void AddNews(string fileData)
+
+        {
+
+            NewsEntities newsEntities = new NewsEntities();
+
+
+
+            var weatherForecast = JsonConvert.DeserializeObject<RootNew>(fileData);
+
+            foreach (var item in weatherForecast.data.items)
+
+            {
+
+                if (!newsEntities.News.Any(p => p.TickerTapeId == item._id))
+
+                {
+
+                    News n = new News();
+
+                    n.Title = item.title;
+
+                    n.TickerTapeId = item._id;
+
+                    n.Description = item.description;
+
+                    n.NewsDate2 = item.date;
+
+                    n.NewsDate = item.date.ToString();
+
+                    n.Image = item.image;
+
+                    n.Stocks = string.Join(",", item.stocks.Select(p => p.sid));
+
+                    n.link = item.link;
+
+                    newsEntities.News.Add(n);
+
+                    Console.WriteLine(item.title);
+
+
+
+                }
+
+            }
+
+            newsEntities.SaveChanges();
+
+        }
+
+    }
+
+
+
+
+
+}
+
+
+SHARE
+SHARE
+Comments
+
+Popular posts from this blog
+When can infinite loop occurs in plugin? How do you avoid infinite loops in plugin code?
+July 08, 2021
+  The CRM platform throws an error stating that it has identified an infinite loop. This usually happens after the number of iterations reaches a maximum of 8. We can fix this by adding a depth check at the start of our plugin code, just after we initialize each of the service objects. The common method to avoid a recurring plugin is to check if  a plugins depth > 1.  This would stop the plugin from being run if was triggered from any other plugin.  The plugin would only run if triggered from the CRM form.
+SHARE
+ POST A COMMENT
+READ MORE
+Maximum Number Of Processes, Stages, And Steps In Business Process Flow's?
+July 09, 2021
+To ensure acceptable performance and the usability of the user interface, there are some limitations you need to be aware of when you plan to use business process flows: There can be no more than 10 activated business process flow processes per entity. Each process can contain no more than 30 stages. Multi-entity processes can contain no more than five entities.
+SHARE
+ POST A COMMENT
+READ MORE
+Difference between Managed Solution AND Unmanaged Solution
+July 07, 2021
+Unmanaged Solution : All solutions starts out as Unmanaged. When it is in the Unmanaged state, you can add, remove, update, and test any of the components of the solutions. You can delete components of your unmanaged solutions, while leaving it available for use in the rest of the system some on the MS CRM dev team have linked this to your ‘Source’ code of your system. The great thing about an unmanaged solution is that during developments, you can create restrictions (like ‘not customizable’) on the components as they evolve. Managed Solutions : When your unmanaged solution is ready for the show, you simply export it too ‘Managed’. You could think of this as ‘compiling’ you code. You set the restrictions (i.e., prevent customizations on certain components) and the end user lives by those rules. But remember, they can still customize the components of the solution that are unrestricted. You cannot add or remove components of a solution, even if the component is unmanaged. Once you have
+SHARE
+ POST A COMMENT
+READ MORE
+
+Pages
+Home
+Field Level Security Interview Question in MSCRM
+Archive
+Labels
+Report Abuse
+Follow Us
+FOLLOW ON TWITTER
+LIKE ON FACEBOOK
+SUBSCRIBE ON YOUTUBE
+FOLLOW ON INSTAGRAM
+Facebook
+
+Breaking
+
+
+Recent Post
+Recent In Internet
+Recent
+Comments
+Subscribe Us
+
+ Powered by Blogger
